@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfólio profissional de Renato — tecnologia, projetos e objetivos de carreira." />
+  <title>Renato — Portfólio Profissional</title>
+
+  <!-- Fonte profissional (system stack para performance) -->
+  <style>
+    :root{
+      --bg: #0b0f1a;
+      --bg-alt: #0f1524;
+      --card: #121a2f;
+      --text: #e6e9f2;
+      --muted: #a6adc5;
+      --brand: #7c9aff;      /* Azul moderno */
+      --brand-2: #63e6be;    /* Verde menta sutil */
+      --accent: #f0b429;     /* Dourado discreto para detalhes */
+      --danger: #ff6b6b;     /* Para estados/labels */
+      --shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.02);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --maxw: 1100px;
+    }
+
+    /* Reset e base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(124,154,255,.08), transparent 60%),
+        radial-gradient(800px 400px at 90% 20%, rgba(99,230,190,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg-alt));
+      font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+    }
+    img{max-width:100%;display:block}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+    /* Navegação */
+    header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:linear-gradient(180deg, rgba(15,21,36,.75), rgba(15,21,36,.55));
+      border-bottom:1px solid rgba(124,154,255,.12);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.3px;
+    }
+    .brand .logo{
+      width:36px;height:36px;border-radius:50%;
+      background: conic-gradient(from 180deg, var(--brand), var(--brand-2), var(--accent), var(--brand));
+      box-shadow:0 6px 14px rgba(124,154,255,.25);
+      border:1px solid rgba(255,255,255,.15);
+    }
+    .menu{display:flex;gap:18px;flex-wrap:wrap}
+    .menu a{
+      padding:8px 12px;border-radius:10px;color:var(--text);opacity:.9;
+    }
+    .menu a:hover{
+      background-color:rgba(124,154,255,.12);
+      opacity:1;text-decoration:none
+    }
+    .cta{
+      display:inline-flex;align-items:center;gap:8px;
+      background:linear-gradient(135deg, var(--brand), var(--brand-2));
+      color:#0b0f1a;padding:8px 14px;border-radius:12px;font-weight:600;
+      box-shadow: 0 8px 16px rgba(124,154,255,.25);
+      border:0;
+    }
+    .cta:hover{filter:brightness(1.05);text-decoration:none}
+
+    /* Hero */
+    .hero{
+      padding:72px 0 48px;
+    }
+    .hero .wrap{
+      display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;
+    }
+    .super{
+      display:inline-flex;gap:10px;align-items:center;
+      padding:6px 10px;border-radius:12px;background-color:rgba(99,230,190,.08);
+      border:1px solid rgba(99,230,190,.25);font-weight:600;color:var(--brand-2)
+    }
+    .title{
+      font-size:clamp(28px, 5vw, 48px);
+      line-height:1.15;margin:16px 0 10px;font-weight:800;
+      letter-spacing:.2px;
+      background:linear-gradient(90deg, #fff, #dfe7ff 55%, #c7ffd6);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .subtitle{color:var(--muted);font-size:18px;max-width:60ch}
+    .actions{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;
+      border:1px solid rgba(124,154,255,.22);color:var(--text);background-color:rgba(18,26,47,.6);
+      box-shadow:var(--shadow);font-weight:600
+    }
+    .btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+
+    .hero-media{
+      position:relative;
+      min-height:280px;border-radius:var(--radius);
+      background:
+        radial-gradient(200px 200px at 75% 25%, rgba(124,154,255,.2), transparent 60%),
+        radial-gradient(300px 300px at 25% 75%, rgba(99,230,190,.15), transparent 60%),
+        linear-gradient(135deg, #0e1426, #0a0e1a);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .lines{
+      position:absolute;inset:0;opacity:.15;
+      background-image: linear-gradient(0deg, rgba(255,255,255,.11) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.11) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .chip{
+      position:absolute;right:18px;bottom:18px;
+      background-color:rgba(124,154,255,.12);
+      border:1px solid rgba(124,154,255,.35);
+      color:var(--text);padding:8px 12px;border-radius:10px;font-size:14px
+    }
+
+    /* Seções */
+    section{padding:42px 0;border-top:1px solid rgba(255,255,255,.06)}
+    .section-title{
+      font-size:24px;margin:0 0 18px;font-weight:800;letter-spacing:.3px
+    }
+    .grid{
+      display:grid;gap:20px;grid-template-columns:repeat(3, 1fr)
+    }
+    @media (max-width:980px){ .hero .wrap{grid-template-columns:1fr} .grid{grid-template-columns:repeat(2, 1fr)} }
+    @media (max-width:640px){ .grid{grid-template-columns:1fr} }
+
+    /* Cartões */
+    .card{
+      background-color:var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius-sm);
+      padding:18px;box-shadow:var(--shadow)
+    }
+    .card h3{margin:0 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--muted)}
+    .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:13px;color:#0b0f1a;background:linear-gradient(135deg, var(--brand-2), var(--brand));
+      padding:6px 10px;border-radius:999px;font-weight:700;
+      border:0;margin-bottom:10px
+    }
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+    /* Linha do tempo */
+    .timeline{position:relative;padding-left:28px}
+    .timeline:before{
+      content:"";position:absolute;left:9px;top:0;bottom:0;width:2px;background:linear-gradient(180deg, var(--brand), transparent)
+    }
+    .tl-item{margin-bottom:18px}
+    .dot{
+      width:14px;height:14px;border-radius:50%;background:var(--brand);position:absolute;left:2px;margin-top:4px;
+      box-shadow:0 0 0 4px rgba(124,154,255,.18)
+    }
+    .tl-item h4{margin:0 0 6px;font-size:16px}
+    .tl-item p{margin:0;color:var(--muted)}
+
+    /* Tabela skills */
+    .skills{
+      display:grid;grid-template-columns:1.1fr .9fr;gap:20px
+    }
+    @media (max-width:860px){ .skills{grid-template-columns:1fr} }
+    .skillbar{
+      background-color:rgba(255,255,255,.06);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1)
+    }
+    .skillbar .fill{
+      height:12px;background:linear-gradient(90deg, var(--brand), var(--brand-2));
+      width:0;animation:grow 1.8s cubic-bezier(.2,.9,.25,1) forwards
+    }
+    @keyframes grow{to{width:var(--w)}}
+
+    /* Rodapé */
+    footer{
+      padding:36px 0;margin-top:20px;border-top:1px solid rgba(255,255,255,.06);
+      color:var(--muted)
+    }
+    .foot-grid{display:grid;grid-template-columns:1fr auto;align-items:center}
+    .social{display:flex;gap:12px}
+    .social a{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border:1px solid rgba(255,255,255,.12);border-radius:12px;color:var(--text)
+    }
+    .social a:hover{background-color:rgba(124,154,255,.12);text-decoration:none}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Renato</span>
+      </div>
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#interesses">Interesses</a>
+        <a href="#carreira">Carreira</a>
+        <a href="#projetos">Projetos</a>
+        <a class="cta" href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container wrap">
+        <div>
+          <div class="super">Portfólio profissional</div>
+          <h1 class="title">Renato Sandri.</h1>
+          <p class="subtitle">
+            Apaixonado por tecnologia. Busco uma posição em
+            Desenvolvimento Front-End com foco em performance, acessibilidade e excelência visual.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#projetos">Ver projetos</a>
+            <a class="btn" href="#contato">Falar comigo</a>
+          </div>
+        </div>
+        <div class="hero-media" aria-hidden="true">
+          <div class="lines"></div>
+          <div class="chip">Disponível para oportunidades</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container">
+        <h2 class="section-title">Sobre o Renato</h2>
+        <div class="grid">
+          <div class="card">
+            <span class="tag">Perfil</span>
+            <h3>Profissional focado em qualidade</h3>
+            <p>
+              Curioso, colaborativo e orientado a detalhes. Gosto de trabalhar com equipes que valorizam boas práticas,
+              código limpo e impacto real para o usuário.
+            </p>
+          </div>
+          <div class="card">
+            <span class="tag">Missão</span>
+            <h3>Entregar valor com elegância</h3>
+            <p>
+              Meu objetivo é unir design e engenharia para criar interfaces rápidas, acessíveis e visualmente marcantes,
+              mantendo a experiência consistente em diferentes dispositivos.
+            </p>
+          </div>
+          <div class="card">
+            <span class="tag">Valores</span>
+            <h3>Clareza, performance e empatia</h3>
+            <p>
+              Acredito em comunicação clara, decisões guiadas por dados e empatia pelo usuário final, sempre medindo e
+              otimizando cada detalhe.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="interesses">
+      <div class="container">
+        <h2 class="section-title">Hobbies</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Design de interfaces</h3>
+            <p>Tipografia, cores, microinterações e sistemas de design bem estruturados.</p>
+            <div class="tags">
+              <span class="tag">UI/UX</span>
+              <span class="tag">Acessibilidade</span>
+              <span class="tag">Design Systems</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Desenvolvimento web</h3>
+            <p>HTML semântico, CSS moderno, performance e boas práticas de front-end.</p>
+            <div class="tags">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">Responsivo</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Aprendizado contínuo</h3>
+            <p>Estudar padrões, ler código de referência e acompanhar tendências com senso crítico.</p>
+            <div class="tags">
+              <span class="tag">Performance</span>
+              <span class="tag">A11y</span>
+              <span class="tag">Boas práticas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="carreira">
+      <div class="container">
+        <h2 class="section-title">Carreria profissional</h2>
+        <div class="skills">
+          <div class="card">
+            <span class="tag">Objetivo</span>
+            <h3>Desenvolvimento Front-End</h3>
+            <p>
+              Quero evoluir como Front-End Engineer, criando experiências robustas com foco em performance, acessibilidade
+              e design consistente, colaborando com produto e back-end.
+            </p>
+            <div class="timeline" style="margin-top:14px">
+              <div class="tl-item">
+                <div class="dot"></div>
+                <h4>2025 — Consolidação em HTML/CSS profissionais</h4>
+                <p>Aplicar semântica, layouts responsivos e padrões de acessibilidade em projetos reais.</p>
+              </div>
+              <div class="tl-item">
+                <div class="dot"></div>
+                <h4>2026 — Frameworks e arquitetura de front-end</h4>
+                <p>Componentização, testes e otimização de build, sem perder qualidade visual.</p>
+              </div>
+              <div class="tl-item">
+                <div class="dot"></div>
+                <h4>2027 — Liderança técnica</h4>
+                <p>Guiar decisões de UI e performance, mentorar e estabelecer boas práticas de design system.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <span class="tag">Competências</span>
+            <h3>Stack e proficiência</h3>
+            <p style="margin-bottom:12px">Nível de conforto nas áreas-chave do front-end moderno.</p>
+            <div class="skillbar" style="--w: 88%"><div class="fill"></div></div>
+            <p>HTML semântico — 88%</p>
+            <div class="skillbar" style="--w: 85%"><div class="fill"></div></div>
+            <p>CSS moderno (Flex/Grid/Anim) — 85%</p>
+            <div class="skillbar" style="--w: 70%"><div class="fill"></div></div>
+            <p>Acessibilidade (WCAG) — 70%</p>
+            <div class="skillbar" style="--w: 65%"><div class="fill"></div></div>
+            <p>Performance Web — 65%</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+     
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <h2 class="section-title">Contato</h2>
+        <div class="grid" style="grid-template-columns:1fr .8fr">
+          <div class="card">
+            <h3>Vamos conversar</h3>
+            <p>
+              Aberto a propostas, estágios e colaborações. Se quiser, posso adaptar este portfólio com seus dados, links e
+              projetos reais.
+            </p>
+            <div class="tags" style="margin-top:12px">
+              <span class="tag">Disponível</span>
+              <span class="tag">Remoto / Híbrido</span>
+              <span class="tag">São José dos Campos</span>
+            </div>
+          </div>
+          <div class="card">
+            <form aria-label="Formulário de contato">
+              <label for="nome">Nome</label>
+              <input id="nome" name="nome" type="text" placeholder="Seu nome" style="width:100%;margin:6px 0 12px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background-color:rgba(255,255,255,.04);color:var(--text)" />
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="voce@exemplo.com" style="width:100%;margin:6px 0 12px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background-color:rgba(255,255,255,.04);color:var(--text)" />
+              <label for="msg">Mensagem</label>
+              <textarea id="msg" name="msg" rows="4" placeholder="Conte sua ideia" style="width:100%;margin:6px 0 12px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background-color:rgba(255,255,255,.04);color:var(--text)"></textarea>
+              <button class="cta" type="submit" style="margin-top:6px">Enviar</button>
+            </form>
+            <p style="margin-top:10px;color:var(--muted)">Este formulário é ilustrativo (sem backend).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot-grid">
+      <p>© 2025 Renato — Portfólio. Todos os direitos reservados.</p>
+      <div class="social">
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="GitHub">GitHub</a>
+        <a href="#" aria-label="Email">Email</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
